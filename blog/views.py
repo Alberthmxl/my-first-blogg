@@ -6,3 +6,7 @@ from .models import Post
 def post_list(request):
 		post = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
 		return render(request, 'blog/post_list.html', {'post': post})
+
+def post_detail(request, pk):
+	Post = get_object_or_404(Post, pk=pk)
+	return render(request, 'blog/post_detail.html' , {'post': post})
